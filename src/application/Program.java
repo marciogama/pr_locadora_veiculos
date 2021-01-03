@@ -1,43 +1,21 @@
 package application;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Date;
 
-import db.DB;
+import model.entities.Carro;
+import model.entities.Cliente;
 
 public class Program {
 
 	public static void main(String[] args) {
-
-//		Testando a conexão com o banco de dados
-//		Connection conn = DB.getConnection();
-//		DB.closeConnection();
 		
-		Connection conn = null;
-		Statement st = null;
-		ResultSet rs = null;
-		try {
-			conn = DB.getConnection();
-			
-			st = conn.createStatement();
-			
-			rs = st.executeQuery("select * from carro");
-//		     rs = st.executeQuery("select * from cliente");
-			
-			while (rs.next()) {
-				System.out.println(rs.getInt("Id") + ", " + rs.getString("placa"));
-//		     	   System.out.println(rs.getString("cpf") + ", " + rs.getString("nome"));
-			}
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		finally {
-			DB.closeResultSet(rs);
-			DB.closeStatement(st);
-			DB.closeConnection();
-		}
+		Carro obj = new Carro(1,"Corsa","LLL3444","Branca",1980,new Date(),15.0);
+
+		Cliente obj1 = new Cliente("11111111111", "fulano de tal", "teste@gmail.com");
+		
+		System.out.println(obj);
+		System.out.println(obj1);
+		
 	}
+	
 }
