@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -53,9 +56,10 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 					+"carro.ano as CarAno, "
 					+"carro.dataAquisicao as CarDataAq, "
 					+"carro.valorDiaria as CarValDia, "
-					+"cliente.cpf as CliCPf, "
+					+"cliente.cpf as CliCpf, "
 					+"cliente.email as CliEmail, "
-					+"cliente.nome as CliNome FROM locacao " 
+					+"cliente.nome as CliNome "
+					+"FROM locacao " 
 					+"INNER JOIN carro On locacao.carroId=carro.id " 
 					+"INNER JOIN cliente ON locacao.cpfId=cliente.cpf "
 					+"where locacao.carroId = ?"); 
@@ -80,7 +84,6 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 	}
 
 	private Locacao instantiateLocacao(ResultSet rs, Carro car, Cliente cli) throws SQLException {
-		
 		Locacao obj = new Locacao();
 		obj.setId(rs.getInt("id"));
 		obj.setInstanteLocacao(rs.getDate("instanteLocacao"));
@@ -89,7 +92,6 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 		obj.setValorTotal(rs.getDouble("valorTotal"));
 		obj.setCarro(car);
 		obj.setCliente(cli);
-		
 		return obj;
 	}
 
@@ -119,4 +121,62 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 		return null;
 	}
 
+	@Override
+	public List<Locacao> findByCarro(Carro carro) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT locacao.*,  "
+					+ "carro.modelo as CarModelo, " 
+					+ "carro.placa as CarPlaca, "
+					+ "carro.cor as CarCor, "
+					+ "carro.ano as CarAno, "
+					+ "carro.dataAquisicao as CarDataAq, "
+					+ "carro.valorDiaria as CarValDia, "
+					+ "cliente.cpf as CliCpf, "
+					+ "cliente.email as CliEmail, "
+					+ "cliente.nome as CliNome "
+					+ "FROM locacao "
+					+ "INNER JOIN carro ON locacao.carroId = carro.id "
+					+"INNER JOIN cliente ON locacao.cpfId=cliente.cpf "
+					+ "WHERE carroId = ? "
+					+ "ORDER BY Modelo" ); 
+				
+			st.setInt(1, carro.getId());	
+			
+			rs = st.executeQuery();
+			
+			List<Locacao> list = new ArrayList<>();
+			Map<Integer, Carro> map = new HashMap<>();
+			
+			while (rs.next()) {
+				
+				Carro car = map.get(rs.getInt("carroId"));
+				
+				if (car == null) {
+					car = instantiateCarro(rs);
+					map.put(rs.getInt("carroId"),car);
+				}
+				
+				Cliente cli = instantiateCliente(rs);
+				Locacao obj = instantiateLocacao(rs, car, cli);
+				list.add(obj);
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
+
+	@Override
+	public List<Locacao> findByCliente(Cliente cliente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

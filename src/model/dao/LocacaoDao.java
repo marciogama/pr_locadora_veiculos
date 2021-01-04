@@ -2,6 +2,8 @@ package model.dao;
 
 import java.util.List;
 
+import model.entities.Carro;
+import model.entities.Cliente;
 import model.entities.Locacao;
 
 public interface LocacaoDao {
@@ -11,4 +13,6 @@ public interface LocacaoDao {
 	void deleteById(Integer id);
 	Locacao findById(Integer id);
 	List<Locacao> findAll();
+	List<Locacao> findByCarro(Carro carro);
+	List<Locacao> findByCliente(Cliente cliente);
 }
