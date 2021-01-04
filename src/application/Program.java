@@ -21,11 +21,9 @@ public class Program {
 //		System.out.println(obj2);
 		
 		LocacaoDao locacaoDao = DaoFactory.createLocacaoDao();
-		
+
+		System.out.println("=== Teste 1: Locacao findById ====");
 		Locacao locacao = locacaoDao.findById(3);
-		
 		System.out.println(locacao);
-		
 	}
-	
 }
