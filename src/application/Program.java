@@ -2,6 +2,8 @@ package application;
 
 import java.util.Date;
 
+import model.dao.DaoFactory;
+import model.dao.LocacaoDao;
 import model.entities.Carro;
 import model.entities.Cliente;
 import model.entities.Locacao;
@@ -15,6 +17,8 @@ public class Program {
 		Cliente obj1 = new Cliente("11111111111", "fulano de tal", "teste@gmail.com");
 		
 		Locacao obj2 = new Locacao(21, new Date(), new Date(), "Rio de Janeiro", 10.5,obj,obj1);
+		
+		LocacaoDao locacaoDao = DaoFactory.createLocacaoDao();
 		
 		System.out.println(obj);
 		System.out.println(obj1);
