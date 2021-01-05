@@ -1,0 +1,31 @@
+Márcio Almeida da Gama
+(21) 9.8776-3498
+email: marciogama2000@gmail.com
+
+Aplicação proposta:
+------------------
+
+   Uma locadora de carros deseja fazer um sistema para armazenar as informações das locações que os clientes fazem. A locadora possui diversas sedes. Para cada locação realizada, é necessário registrar a data e horário em que o cliente pega o carro, bem como a sede da qual o carro foi retirado. A data e horário em que o carro foi alugado e devolvido devem ser armazenados. Os dados de cada carro são modelo, placa, cor, ano e data de aquisição. Os dados dos clientes são nome, cpf e email. Cada carro tem um valor de diária diferente.
+
+
+Ferramentas utilizadas:
+----------------------
+
+Java versão 1.8.0_271
+MySQL versão 8.0
+Eclipse IDE versão 2019-06 (4.12.0)
+GitHub: https://github.com/marciogama/pr_locadora_veiculos
+
+
+Arquivos Gerados:
+----------------
+
+Pasta de trabalho: pr_locadora_veiculos
+
+Aplicação Proposta.txt
+Diagrama ER.png
+
+Cópia de segurança do banco de dados:   ????
+
+
+

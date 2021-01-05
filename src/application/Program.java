@@ -5,6 +5,7 @@ import java.util.List;
 import model.dao.DaoFactory;
 import model.dao.LocacaoDao;
 import model.entities.Carro;
+import model.entities.Cliente;
 import model.entities.Locacao;
 
 public class Program {
@@ -24,6 +25,18 @@ public class Program {
 			System.out.println(obj);
 		}
 		
+//		System.out.println("\n=== Teste 3: Locacao findByCliente ====");
+//		Cliente cliente = new Cliente("44444444444",null,null);
+//		list = locacaoDao.findByCliente(cliente);
+//		for (Locacao obj : list) {
+//			System.out.println(obj);
+//		}
+		
+		System.out.println("\n=== Teste 4: Locacao findAll ====");
+		list = locacaoDao.findAll();
+		for (Locacao obj : list) {
+			System.out.println(obj);
+		}
 		
 		
 	}
