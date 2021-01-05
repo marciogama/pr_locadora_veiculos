@@ -1,7 +1,7 @@
 package application;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Scanner;
 
 import model.dao.DaoFactory;
 import model.dao.LocacaoDao;
@@ -12,6 +12,8 @@ import model.entities.Locacao;
 public class Program {
 
 	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
 		
 		LocacaoDao locacaoDao = DaoFactory.createLocacaoDao();
 
@@ -50,7 +52,12 @@ public class Program {
 		locacaoDao.update(locacao);
 		System.out.println("Atualização terminada ! ");
 		
+		System.out.println("\n=== Teste 7: Locacao delete ====");
+		System.out.println("Informe um Id para exclusão: ");
+		int id = sc.nextInt();
+		locacaoDao.deleteById(id);
+		System.out.println("Exclusão completada com sucesso !");
 		
-		
+		sc.close();
 	}
 }
