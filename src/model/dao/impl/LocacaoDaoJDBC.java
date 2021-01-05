@@ -312,17 +312,15 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 			rs = st.executeQuery();
 			
 			List<Locacao> list = new ArrayList<>();
-			Map<Integer, Cliente> map = new HashMap<>();
+			Map<String, Cliente> map = new HashMap<>();
 			
 			while (rs.next()) {
 				
-//				Cliente cli = map.get(rs.getInt("cpfId"));
-				
-				Cliente cli = map.get(rs.getInt("cpfId"));
+				Cliente cli = map.get(rs.getString("cpfId"));
 							
 				if (cli == null) {
 					cli = instantiateCliente(rs);
-					map.put(rs.getInt("cpfId"),cli);
+					map.put(rs.getNString("cpfId"),cli);
 				}
 				
 				Carro car = instantiateCarro(rs);
