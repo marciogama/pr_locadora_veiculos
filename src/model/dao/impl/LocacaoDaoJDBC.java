@@ -67,8 +67,29 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 
 	@Override
 	public void update(Locacao obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"UPDATE locacao " 
+					+"SET instanteLocacao=?, instanteDevolucao=?, sede=?, valorTotal=?, carroId=?, cpfId=? "
+					+ "WHERE Id = ?");
+			
+			st.setDate(1, new java.sql.Date(obj.getInstanteLocacao().getTime()));
+			st.setDate(2, new java.sql.Date(obj.getInstanteDevolucao().getTime()));
+			st.setString(3, obj.getSede());
+			st.setDouble(4, obj.getValorTotal());
+			st.setInt(5, obj.getCarro().getId());
+			st.setString(6, obj.getCliente().getCpf());
+			st.setInt(7, obj.getId());
+			
+			st.executeUpdate();
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override

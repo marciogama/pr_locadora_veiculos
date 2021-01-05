@@ -39,9 +39,18 @@ public class Program {
 			System.out.println(obj);
 		}
 		
-		System.out.println("\n=== Teste 5: Locacao insert ====");
-		Locacao novaLocacao = new Locacao(null, new Date(), new Date(), "Fortaleza", 3000.00, carro, cliente );
-		locacaoDao.insert(novaLocacao);
-		System.out.println("Inserido! Novo id = "+novaLocacao.getId());
+//		System.out.println("\n=== Teste 5: Locacao insert ====");
+//		Locacao novaLocacao = new Locacao(null, new Date(), new Date(), "Fortaleza", 3000.00, carro, cliente );
+//		locacaoDao.insert(novaLocacao);
+//		System.out.println("Inserido! Novo id = "+novaLocacao.getId());
+		
+		System.out.println("\n=== Teste 6: Locacao update ====");
+		locacao = locacaoDao.findById(2);
+		locacao.setSede("Natal");
+		locacaoDao.update(locacao);
+		System.out.println("Atualização terminada ! ");
+		
+		
+		
 	}
 }
