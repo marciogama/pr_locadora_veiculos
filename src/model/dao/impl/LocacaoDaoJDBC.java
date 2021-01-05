@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +27,42 @@ public class LocacaoDaoJDBC implements LocacaoDao {
 
 	@Override
 	public void insert(Locacao obj) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"INSERT INTO locacao" 
+					+ "(instanteLocacao, instanteDevolucao, sede, valorTotal, carroId, cpfId)"
+					+ "VALUES"
+					+ "(?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
+			
+			st.setDate(1, new java.sql.Date(obj.getInstanteLocacao().getTime()));
+			st.setDate(2, new java.sql.Date(obj.getInstanteDevolucao().getTime()));
+			st.setString(3, obj.getSede());
+			st.setDouble(4, obj.getValorTotal());
+			st.setInt(5, obj.getCarro().getId());
+			st.setString(6, obj.getCliente().getCpf());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					obj.setId(id);
+				}
+				DB.closeResultSet(rs);
+			}
+			else {
+				throw new DbException("Erro inesperado! Nenhuma linha afetada!");
+			}
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+		}
 	}
 
 	@Override

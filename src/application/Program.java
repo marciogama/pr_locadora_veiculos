@@ -1,5 +1,6 @@
 package application;
 
+import java.util.Date;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -25,8 +26,8 @@ public class Program {
 			System.out.println(obj);
 		}
 		
-//		System.out.println("\n=== Teste 3: Locacao findByCliente ====");
-//		Cliente cliente = new Cliente("44444444444",null,null);
+		System.out.println("\n=== Teste 3: Locacao findByCliente ====");
+		Cliente cliente = new Cliente("44444444444",null,null);
 //		list = locacaoDao.findByCliente(cliente);
 //		for (Locacao obj : list) {
 //			System.out.println(obj);
@@ -38,6 +39,9 @@ public class Program {
 			System.out.println(obj);
 		}
 		
-		
+		System.out.println("\n=== Teste 5: Locacao insert ====");
+		Locacao novaLocacao = new Locacao(null, new Date(), new Date(), "Fortaleza", 3000.00, carro, cliente );
+		locacaoDao.insert(novaLocacao);
+		System.out.println("Inserido! Novo id = "+novaLocacao.getId());
 	}
 }
