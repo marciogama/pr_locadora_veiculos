@@ -17,13 +17,29 @@ Eclipse IDE versão 2019-06 (4.12.0)
 GitHub: https://github.com/marciogama/pr_locadora_veiculos
 
 
-Arquivos Gerados:
-----------------
+Informações gerais:
+------------------
 
 Pasta de trabalho: pr_locadora_veiculos
 
 Aplicação Proposta.txt
 Diagrama ER.png
+
+	Escolhi fazer um CRUD de uma locadora de veículos. Utilizei banco de dados MySQL e o padrão de projeto DAO (Data Access Object). Consegui 'terminar' o CRUD da locação de veículos e ficou faltando implementar (bem similar ao feito) os CRUDs de Carros e Clientes. 
+
+	Utilizei o arquivo Program.java (\src\application\) para executar as rotinas do CRUD da Locação.
+
+	Ficou faltando experiência de como fazer um menu bonito para que o usuário possa escolher entre as opções. Ou seja, como interagir o Java no BackEnd com o FrontEnd. Imagino que poderia utilizar o framework Spring Boot mas pelo que entendi, essa ferramenta não faz parte do plano de vocês.
+
+	Se tiverem algum material com maiores informações ficarei muito grato em receber e aprender.
+
+
+Obrigado.
+
+Márcio Gama
+(21) 9.8776-3498 
+
+
 
 
 
