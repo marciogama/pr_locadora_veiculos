@@ -25,7 +25,8 @@ Pasta de trabalho: pr_locadora_veiculos
 Aplicação Proposta.txt
 Diagrama ER.png
 
-Cópia de segurança do banco de dados:   ????
+
+
 
 
 
